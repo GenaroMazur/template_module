@@ -41,21 +41,21 @@ if (core.getEnvironments(EnvironmentsEnum.WEBSOCKET)?.toLowerCase() == "true") {
 core.expressServer = expressServer;
 
 //---------------------------------code here------------------------------------------
-/*
-if (core.websocketServer) {
-  core.websocketServer.onConnect = () => {
-    console.log("Socket connected");
-  };
-}
 
-if (core.redisConnection) {
-  core.redisConnection.setSubscription("someChannel", () => {
-    console.log("message recive");
-  });
-}
+// if (core.websocketServer) {
+//   core.websocketServer.onConnect = () => {
+//     console.log("Socket connected");
+//   };
+// }
 
-core.expressServer.app.use(some router)
-*/
+// if (core.redisConnection) {
+//   core.redisConnection.setSubscription(["someChannel"], () => {
+//     console.log("message recive");
+//   });
+// }
+
+//core.expressServer.app.use()
+
 //------------------------------------------------------------------------------------
 
 core.start();
