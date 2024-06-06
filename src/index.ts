@@ -7,6 +7,7 @@ import WebsocketServer from "./server/WebsocketServer";
 import MongoConnection from "./database/MongoConnection";
 import { EnvironmentsEnum } from "./enums/environments.enum";
 import { RedisConnection } from "./database/RedisConnection";
+import indexRouter from "./infraestructure/index.routes";
 
 const expressServer = new ExpressServer();
 
@@ -54,7 +55,7 @@ core.expressServer = expressServer;
 //   });
 // }
 
-//core.expressServer.app.use()
+core.expressServer.app.use(indexRouter);
 
 //------------------------------------------------------------------------------------
 
