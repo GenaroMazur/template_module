@@ -7,7 +7,6 @@ import WebsocketServer from "./server/WebsocketServer";
 import MongoConnection from "./database/MongoConnection";
 import { EnvironmentsEnum } from "./enums/environments.enum";
 import { RedisConnection } from "./database/RedisConnection";
-import indexRouter from "./infraestructure/index.routes";
 
 const expressServer = new ExpressServer();
 
@@ -41,22 +40,28 @@ if (core.getEnvironments(EnvironmentsEnum.WEBSOCKET)?.toLowerCase() == "true") {
 
 core.expressServer = expressServer;
 
+core.start();
+
 //---------------------------------code here------------------------------------------
+//-------All imports you need
+import indexRouter from "./infraestructure/index.routes";
 
-// if (core.websocketServer) {
-//   core.websocketServer.onConnect = () => {
-//     console.log("Socket connected");
-//   };
-// }
+//---------------------------
+if (core.websocketServer) {
+  core.websocketServer.onConnect = (_websocketClient, _request) => {
+    console.log("Socket connected");
+  };
+}
 
-// if (core.redisConnection) {
-//   core.redisConnection.setSubscription(["someChannel"], () => {
-//     console.log("message recive");
-//   });
-// }
+if (core.redisConnection) {
+  core.redisConnection.setSubscription(
+    ["gps:gp1"],
+    (mensajeReceive, channel) => {
+      console.log("message recive", mensajeReceive, "from", channel);
+    }
+  );
+}
 
 core.expressServer.app.use(indexRouter);
 
 //------------------------------------------------------------------------------------
-
-core.start();

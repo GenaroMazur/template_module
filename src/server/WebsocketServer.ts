@@ -16,17 +16,17 @@ export default class WebsocketServer {
     });
   }
 
-  private _onConnect: null | ((ws: WebSocket, res: IncomingMessage) => void) =
+  private _onConnect: null | ((ws: WebSocket, req: IncomingMessage) => void) =
     null;
 
   public get onConnect():
-    | ((ws: WebSocket, res: IncomingMessage) => void)
+    | ((ws: WebSocket, req: IncomingMessage) => void)
     | null {
     return this._onConnect;
   }
 
   public set onConnect(
-    onConnect: (ws: WebSocket, res: IncomingMessage) => void
+    onConnect: (ws: WebSocket, req: IncomingMessage) => void
   ) {
     this._onConnect = onConnect;
   }
