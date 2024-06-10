@@ -45,6 +45,7 @@ core.start();
 //---------------------------------code here------------------------------------------
 //-------All imports you need
 import indexRouter from "./infraestructure/index.routes";
+import { errorPage, notFound } from "./infraestructure/index.controller";
 
 //---------------------------
 if (core.websocketServer) {
@@ -63,5 +64,6 @@ if (core.redisConnection) {
 }
 
 core.expressServer.app.use(indexRouter);
-
+core.expressServer.app.use(notFound);
+core.expressServer.app.use(errorPage);
 //------------------------------------------------------------------------------------
