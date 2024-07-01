@@ -68,4 +68,14 @@ export default class Core {
   public getEnvironments(key: EnvironmentsEnum): string | null {
     return process.env[key] || null;
   }
+
+  close() {
+    return Promise.all([
+      new Promise<void>((r) => {
+        this.httpServer.server.close(() => r());
+      }),
+      this._redisConnection?.close(),
+      this._mongoConnection?.close(),
+    ]);
+  }
 }

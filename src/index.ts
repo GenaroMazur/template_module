@@ -67,3 +67,15 @@ core.expressServer.app.use(indexRouter);
 core.expressServer.app.use(notFound);
 core.expressServer.app.use(errorPage);
 //------------------------------------------------------------------------------------
+
+process.on("SIGINT", function () {
+  console.log("CERRANDO INSTANCIA");
+  core
+    .close()
+    .then(() => {
+      process.exit(0);
+    })
+    .catch((_err) => {
+      process.exit(1);
+    });
+});

@@ -24,7 +24,7 @@
   },
   "scripts": {
     "test": "jest --coverage",
-    "dev": "ts-node-dev src/index.ts",
+    "dev": "ts-node-dev --clear src/index.ts",
     "build": "npx tsc -p tsconfig.build.json",
     "start": "node ./dist/index"
   }
